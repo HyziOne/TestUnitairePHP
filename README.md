@@ -14,6 +14,7 @@ Utiliser la commande suivante pour initialiser le php au front :
 ```
 php -S localhost:8000 ./public/routeur.php
 ```
+## Fonctionnnalités
 ### Utilisation
 Pour verifier que l'installation est prête : ```http://localhost:8000```
 
