@@ -1,6 +1,14 @@
 <?php
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: http://localhost:8080');
+$allowedOrigins = array(
+    "http://localhost:8080",
+    "http://localhost"
+);
+// Get the request's origin
+$requestOrigin = $_SERVER['HTTP_ORIGIN'];
+if (in_array($requestOrigin, $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: $requestOrigin");
+}
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -31,7 +39,6 @@ $response = ['success' => false, 'data' => null];
 
 $param = strstr($uri, "?");
 $param = substr($param, 1);
-
 
 switch ($uri) {
     case '/':
@@ -108,11 +115,11 @@ switch ($uri) {
             $user_id = $_POST['user_id'];
             $room_id = $_POST['room_id'];
             $content = $_POST['content'];
-
-            $message = new Message($user_id, $room_id, $content, $messagecounter);
+        
+            $message = new Message($user_id, $room_id, $content); // Remove the $messagecounter parameter
             $response = $orm->addMessage($message);
             $_SESSION['idmessagemanager'] = $messagecounter + 1;
-        }
+        }        
         break;
     case '/disconnect':
         if ($method == 'GET') {
@@ -127,4 +134,7 @@ switch ($uri) {
         break;
 }
 
+// Fin du switch case
+
+// Encode la réponse au format JSON et l'affiche
 echo json_encode($response);
