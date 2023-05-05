@@ -1,4 +1,3 @@
-
 # Message Board
 Message Board est une application permettant aux utilisateurs de poster des messages dans différents salons. Les utilisateurs peuvent créer des salons et consulter les messages de tous les salons.
 
@@ -7,10 +6,17 @@ Le code est écrit en PHP natif sans l'utilisation d'un framework. Les tests uni
 ## Installation
 Cloner le dépôt: git clone https://github.com/HyziOne/TestUnitairePHP.git
 
-Installer les dépendances: composer install
+Installer les dépendances: ``` composer install```
 
 Exécuter les tests: vendor/bin/phpunit et vendor/bin/behat
+
+Utiliser la commande suivante pour initialiser le php au front :
+```
+php -S localhost:8000 ./public/routeur.php
+```
 ### Utilisation
+Pour verifier que l'installation est prête : ```http://localhost:8000```
+
 L'application utilise un ORM fictif pour stocker les données. 
 
 Les données sont stockées en mémoire pendant l'exécution de l'application.
